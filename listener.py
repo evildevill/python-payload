@@ -5,7 +5,7 @@ import time
 x = 0
 
 listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-listener.bind(("localhost", 4444))
+listener.bind(("localhost", 4444)) # Replace localhost With Your IP Address.
 listener.listen()
 print("Server is started.!")
 connection, address = listener.accept()
