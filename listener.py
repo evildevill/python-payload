@@ -11,19 +11,12 @@ print("Server is started.!")
 connection, address = listener.accept()
 print("Got Connection From {}".format(address))
 
-# Upload Function // Upload Files to the Remote Computer.
-
-
 def send_data(output_data):
     size_of_data = len(output_data)
     size_of_data = str(size_of_data)
     connection.send(bytes(size_of_data, "utf-8"))
     time.sleep(2.0)
     connection.send(output_data)
-
-
-# Recived Function // Recevied Data From The Remote Computer
-
 
 def recv_data():
     original_size = connection.recv(2048).decode("utf-8")
@@ -32,7 +25,6 @@ def recv_data():
     while len(data) != original_size:
         data = data + connection.recv(2048)
     return data
-
 
 while True:
     try:
